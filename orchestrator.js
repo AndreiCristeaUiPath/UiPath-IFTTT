@@ -12,12 +12,13 @@ exports.startJob = function (releaseKey) {
     console.log('Called startJob');
     requestBody = {
         "startInfo": {
-          "ReleaseKey": releaseKey,
-          "Strategy": "All",
-          "RobotIds": [],
-          "NoOfRobots": 0
+            "ReleaseKey": releaseKey,
+            "Strategy": "All",
+            "RobotIds": [],
+            "NoOfRobots": 0
         }
-      }
+    };
+
     orchestrator.v2.odata.postStartJobs(requestBody, (err, data) => {
         if (err) {
             console.error('Error: ' + err);
