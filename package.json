@@ -2,8 +2,9 @@
   "name": "uipath-ifttt",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node myapp.js",
     "dev": "nodemon server.js"
   },
   "repository": {
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/AndreiCristeaUiPath/UiPath-IFTTT#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "uipath-orchestrator": "^1.0.3"
   },
