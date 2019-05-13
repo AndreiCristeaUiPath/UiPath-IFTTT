@@ -19,7 +19,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
-    "mongodb": "^3.2.4"
+    "uipath-orchestrator": "^1.0.3"
   },
   "devDependencies": {
     "nodemon": "^1.19.0"
