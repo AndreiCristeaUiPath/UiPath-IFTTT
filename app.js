@@ -4,6 +4,8 @@ const orchestrator = require('./orchestrator');
 
 const app = express();
 
+const listeningPort = 80;
+
 app.post('/startJob', (req, res) => {
     console.log('Received request to Start Job');
     orchestrator.startJob('35bdf244-b351-4e45-ab89-88cdf05317f5');
@@ -17,6 +19,6 @@ app.get('/ifttt/v1/status', (req, res) => {
     res.status(200).send();
 });
 
-app.listen(process.env.LISTENING_PORT, () => {
-    console.log('Live on port ' + process.env.LISTENING_PORT);
+app.listen(listeningPort, () => {
+    console.log('Live on port ' + listeningPort);
 });
