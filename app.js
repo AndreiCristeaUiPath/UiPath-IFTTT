@@ -1,10 +1,23 @@
 require('dotenv').config();
 const express = require('express');
 const orchestrator = require('./orchestrator');
+const validator = require('./validator');
+const util = require('util');
 
 const app = express();
 
 var listeningPort = process.env.PORT;
+
+app.get('/ifttt/v1/status', (req, res) => {
+    console.log('Received status request');
+    if (validator.serviceKeyIsValid(req.header('IFTTT-Service-Key'))) {
+        console.log('Service key is valid');
+        res.status(200).send();
+    } else {
+        console.log('Service key is invalid');
+        res.status(401).send();
+    }
+});
 
 app.post('/startJob', (req, res) => {
     console.log('Received request to Start Job');
@@ -12,11 +25,6 @@ app.post('/startJob', (req, res) => {
     res.status(201).send({
         message: 'Starting job '
     });
-});
-
-app.get('/ifttt/v1/status', (req, res) => {
-    console.log('Received status request');
-    res.status(200).send();
 });
 
 app.listen(listeningPort, () => {
