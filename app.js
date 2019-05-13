@@ -4,7 +4,7 @@ const orchestrator = require('./orchestrator');
 
 const app = express();
 
-const listeningPort = 80;
+var listeningPort = process.env.PORT;
 
 app.post('/startJob', (req, res) => {
     console.log('Received request to Start Job');
