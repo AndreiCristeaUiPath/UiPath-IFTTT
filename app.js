@@ -10,11 +10,11 @@ var listeningPort = process.env.PORT;
 
 app.get('/ifttt/v1/status', (req, res) => {
     console.log('Received status request');
-    if (validator.serviceKeyIsValid(req.header('IFTTT-Service-Key'))) {
-        console.log('Service key is valid');
+    if (validator.channelKeyIsValid(req.header('IFTTT-Channel-Key'))) {
+        console.log('Channel key is valid');
         res.status(200).send();
     } else {
-        console.log('Service key is invalid');
+        console.log('Channel key is invalid');
         res.status(401).send();
     }
 });

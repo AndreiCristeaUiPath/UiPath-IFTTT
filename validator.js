@@ -1,3 +1,3 @@
-exports.serviceKeyIsValid = function(serviceKey) {
-    return process.env.SERVICE_KEY == serviceKey;
+exports.channelKeyIsValid = function(serviceKey) {
+    return process.env.CHANNEL_KEY == serviceKey;
 }
