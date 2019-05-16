@@ -20,8 +20,8 @@ var iftttChannel = new Ifttt({
 });
 
 // Add triggers & actions to your IFTTT channel.
-iftttChannel.registerTrigger( new (require('./trigger/new_thing_created'))() );
-iftttChannel.registerAction(  new (require('./action/create_new_thing'))() );
+iftttChannel.registerTrigger(new(require('./triggers/new_thing_created'))());
+iftttChannel.registerAction(new(require('./actions/create_new_thing'))());
 
 iftttChannel.handlers.status = function (request, callback) {
     //fetch('https://yoururl.com/api').then(function (response) {
