@@ -1,5 +1,5 @@
 // Require the module in your code.
-var Ifttt = require('/ifttt');
+var Ifttt = require('ifttt');
 var util = require('util');
 
 // Create example action.
