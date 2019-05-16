@@ -6,6 +6,7 @@ var util = require('util');
 function createNewThing() {
   createNewThing.super_.call(this, 'create_new_thing');
 }
+
 util.inherits(createNewThing, Ifttt.Action);
 
 // Overwrite `_getResponseData` with your response handler.
