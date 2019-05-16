@@ -3,8 +3,6 @@ var express = require('express');
 var Ifttt = require('ifttt');
 var bodyParser = require('body-parser');
 
-var orchestrator = require('./orchestrator');
-
 var app = express();
 app.use(bodyParser.json());
 
@@ -20,8 +18,9 @@ var iftttChannel = new Ifttt({
 });
 
 // Add triggers & actions to your IFTTT channel.
-iftttChannel.registerTrigger(new(require('./trigger/NewThingCreated'))());
-iftttChannel.registerAction(new(require('./action/CreateNewThing'))());
+iftttChannel.registerTrigger(new(require('./trigger/newThingCreated'))());
+iftttChannel.registerAction(new(require('./action/createNewThing'))());
+iftttChannel.registerAction(new(require('./action/startJob'))());
 
 iftttChannel.handlers.status = function (request, callback) {
     //fetch('https://yoururl.com/api').then(function (response) {

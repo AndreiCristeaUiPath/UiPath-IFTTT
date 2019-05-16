@@ -3,13 +3,13 @@ var Ifttt = require('ifttt');
 var util = require('util');
 
 // Create example trigger.
-function NewThingCreated() {
-  NewThingCreated.super_.call(this, 'new_thing_created');
+function newThingCreated() {
+  newThingCreated.super_.call(this, 'new_thing_created');
 }
-util.inherits(NewThingCreated, Ifttt.Trigger);
+util.inherits(newThingCreated, Ifttt.Trigger);
 
 // Overwrite `_getResponseData` with your response handler.
-NewThingCreated.prototype._getResponseData = function (req, requestPayload, cb) {
+newThingCreated.prototype._getResponseData = function (req, requestPayload, cb) {
   var results = [];
 
   for (var i = 0; i < (req.body.limit || 3); i++)
@@ -25,4 +25,4 @@ NewThingCreated.prototype._getResponseData = function (req, requestPayload, cb) 
   return cb(null, results);
 };
 
-module.exports = NewThingCreated;
+module.exports = newThingCreated;

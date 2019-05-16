@@ -3,20 +3,22 @@ var Ifttt = require('ifttt');
 var util = require('util');
 
 // Create example action.
-function createNewThing() {
-  createNewThing.super_.call(this, 'create_new_thing');
+function startJob() {
+  startJob.super_.call(this, 'startJob');
 }
-util.inherits(createNewThing, Ifttt.Action);
+util.inherits(startJob, Ifttt.Action);
 
 // Overwrite `_getResponseData` with your response handler.
-createNewThing.prototype._getResponseData = function (req, requestPayload, cb) {
+startJob.prototype._getResponseData = function (req, requestPayload, cb) {
   var results = [];
 
   results.push({
     id: 'id1'
   });
 
+
+  console.log('Started job');
   return cb(null, results);
 };
 
-module.exports = createNewThing;
+module.exports = startJob;
