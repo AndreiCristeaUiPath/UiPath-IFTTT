@@ -3,13 +3,13 @@ var Ifttt = require('ifttt');
 var util = require('util');
 
 // Create example action.
-function StartJob() {
-  StartJob.super_.call(this, 'example');
+function ExampleAction() {
+  ExampleAction.super_.call(this, 'create');
 }
-util.inherits(StartJob, Ifttt.Action);
+util.inherits(ExampleAction, Ifttt.Action);
 
 // Overwrite `_getResponseData` with your response handler.
-StartJob.prototype._getResponseData = function(req, requestPayload, cb){
+ExampleAction.prototype._getResponseData = function(req, requestPayload, cb){
   var results = [];
 
   results.push({
@@ -19,4 +19,4 @@ StartJob.prototype._getResponseData = function(req, requestPayload, cb){
   return cb(null, results);
 };
 
-module.exports = StartJob;
+module.exports = ExampleAction;

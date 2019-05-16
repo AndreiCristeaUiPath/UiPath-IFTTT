@@ -20,7 +20,8 @@ var iftttChannel = new Ifttt({
 });
 
 // Add triggers & actions to your IFTTT channel.
-iftttChannel.registerAction(new(require('./action/startJob')));
+iftttChannel.registerTrigger( new (require('./trigger/test'))() );
+iftttChannel.registerAction(  new (require('./action/create'))() );
 
 iftttChannel.handlers.status = function (request, callback) {
     //fetch('https://yoururl.com/api').then(function (response) {
