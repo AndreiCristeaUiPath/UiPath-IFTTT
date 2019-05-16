@@ -141,7 +141,7 @@ Ifttt.prototype.addExpressRoutes = function(app) {
    */
   app.post(this.iftttBasepath + '/test/setup', headerCheck, function(req, res){
     if (req.get('IFTTT-Channel-Key') !== that.iftttChannelKey) {
-      return res.status(401).send('Unauthorized');
+      return res.status(401).send( JSON.stringify({errors:[{message:'Unauthorized request since an invalid channelkey was given'}]}) );
     }
 
     that.generateTestSetupSample(function(samples){
@@ -250,7 +250,7 @@ Ifttt.prototype.accessCheck = function(req, res, next, options) {
   if (this.iftttAuthMode === 'header' || options.forceHeaderCheck) {
     if (req.get('IFTTT-Channel-Key') !== this.iftttChannelKey) {
       this.logger.warn('Invalid IFTTT-Channel-Key header.');
-      return res.status(401).send('Unauthorized');
+      return res.status(401).send( JSON.stringify({errors:[{message:'Unauthorized because of invalid channel key'}]}) );
     }
   }
 
