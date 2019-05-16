@@ -17,9 +17,6 @@ var iftttChannel = new Ifttt({
     channelKey: process.env.CHANNEL_KEY
 });
 
-// Add triggers & actions to your IFTTT channel.
-iftttChannel.registerTrigger(new(require('./trigger/newThingCreated'))());
-iftttChannel.registerAction(new(require('./action/createNewThing'))());
 iftttChannel.registerAction(new(require('./action/startJob'))());
 
 iftttChannel.handlers.status = function (request, callback) {
