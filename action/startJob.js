@@ -2,7 +2,7 @@ var Ifttt = require('ifttt');
 var util = require('util');
 
 function startJob() {
-  startJob.super_.call(this, 'startJob');
+  startJob.super_.call(this, 'start_job');
 }
 
 util.inherits(startJob, Ifttt.Action);
