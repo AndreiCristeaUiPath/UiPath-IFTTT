@@ -1,31 +1,50 @@
 require('dotenv').config();
-const express = require('express');
-const orchestrator = require('./orchestrator');
-const validator = require('./validator');
-const util = require('util');
+var express = require('express');
+var Ifttt = require('ifttt');
+var bodyParser = require('body-parser');
 
-const app = express();
+var app = express();
+app.use(bodyParser.json());
 
 var listeningPort = process.env.PORT;
 
-app.get('/ifttt/v1/status', (req, res) => {
-    console.log('Received status request');
-    if (validator.channelKeyIsValid(req.header('IFTTT-Channel-Key'))) {
-        console.log('Channel key is valid');
-        res.status(200).send();
-    } else {
-        console.log('Channel key is invalid');
-        res.status(401).send();
-    }
+app.get('/', function (req, res) {
+    res.send('Hello World')
+})
+
+// Create new IFTTT channel.
+var iftttChannel = new Ifttt({
+    channelKey: process.env.CHANNEL_KEY
 });
 
-app.post('/startJob', (req, res) => {
-    console.log('Received request to Start Job');
-    orchestrator.startJob('35bdf244-b351-4e45-ab89-88cdf05317f5');
-    res.status(201).send({
-        message: 'Starting job '
-    });
-});
+iftttChannel.registerAction(new(require('./action/startJob'))());
+
+iftttChannel.handlers.status = function (request, callback) {
+    //fetch('https://yoururl.com/api').then(function (response) {
+    //  if (response.ok) {
+    callback(null, true);
+    //  }
+    //})
+};
+iftttChannel.handlers.user_info = function (request, callback) {
+    //fetch('https://yoururl.com/api')
+    //.then(function (response) {
+    //   if (response.ok) {
+    //     return response.json()
+    //   }
+    // })
+    // .then(function(data) {
+    //     callback(data.error, {id: data.user.id, name: data.user.name, url: data.user.url});
+    callback(data.error, {
+        id: 234234,
+        name: "John Doe",
+        url: "http://foobar.com/johndoe"
+    })
+    // });
+};
+
+// Add IFTTT channel routes to your express app.
+iftttChannel.addExpressRoutes(app);
 
 app.listen(listeningPort, () => {
     console.log('Live on port ' + listeningPort);
